@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -22,16 +23,20 @@ class User extends Authenticatable
     use TwoFactorAuthenticatable;
     // The User model requires this trait
     use HasRoles;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    'name',
+    'email',
+    'password',
+    'id_number',
+    'phone',
+    'address',
+];
 
     /**
      * The attributes that should be hidden for serialization.
