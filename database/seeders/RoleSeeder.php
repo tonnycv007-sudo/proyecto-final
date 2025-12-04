@@ -13,18 +13,19 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $roles =[
-            'Paciente',
-            'Doctor',
+        $roles = [
+            'Veterinario',
+            'Asistente Veterinario',
             'Recepcionista',
+            'Gerente de Clínica',
             'Administrador'
         ];
-        //
-        //Crear los roles
-        foreach($roles as $role){
+        
+        // Crear los roles
+        foreach ($roles as $role) {
             Role::create([
                 'name' => $role,
             ]);
+        }
     }
-}
 }

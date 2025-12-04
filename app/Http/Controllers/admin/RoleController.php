@@ -63,7 +63,7 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         //Restringir editar los primeros 4 roles
-        if($role->id <=4){
+        if($role->id <=5){
             //variable de un solo uso
             session()->flash('swal',
             [
@@ -120,7 +120,7 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         //Restringir eliminar los primeros 4 roles
-        if($role->id <=4){
+        if($role->id <=5){
             //variable de un solo uso
             session()->flash('swal',
             [

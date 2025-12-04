@@ -22,6 +22,6 @@ class UserSeeder extends Seeder
             'id_number' => '34',
             'phone' => '8888888888',
             'address' => 'Calle 42, Lindavista',
-        ])->assignRole('Doctor');
+        ])->assignRole('Veterinario');
     }
 }

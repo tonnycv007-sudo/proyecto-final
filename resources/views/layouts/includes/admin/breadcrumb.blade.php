@@ -13,7 +13,6 @@
                     <a href="{{ $item['href'] }}"
                        class="inline-flex items-center text-emerald-700 hover:text-emerald-900 font-medium transition">
 
-                        {{-- ICONO SOLO PARA EL PRIMER BREADCRUMB --}}
                         @if($index === 0)
                             <i class="fa-solid fa-paw text-emerald-600 mr-2"></i>
                         @endif

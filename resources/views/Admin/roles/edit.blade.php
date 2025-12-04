@@ -1,29 +1,32 @@
 <x-admin-layout 
-    title="Editar Rol | Healthify" 
+    title="Editar Rol | VeterinaryCare"
     :breadcrumbs="[
         ['name' => 'Dashboard', 'href' => route('admin.dashboard')],
         ['name' => 'Roles', 'href' => route('admin.roles.index')],
         ['name' => 'Editar'],
     ]">
-    <x-wire-card>
-        <form action="{{ route('admin.roles.update', $role) }}" method="POST">
-            
-            @csrf
 
+    <x-wire-card>
+
+        <form action="{{ route('admin.roles.update', $role) }}" method="POST">
+            @csrf
             @method('PUT')
 
             <x-wire-input 
-                label="Nombre" 
-                name="name" 
-                placeholder="Nombre" 
+                label="Nombre del rol"
+                name="name"
+                placeholder="Ej: Administrador"
                 value="{{ old('name', $role->name) }}"
             />
 
             <div class="flex justify-end mt-4">
-                <x-wire-button type="submit" blue>Actualizar</x-wire-button>
+                <x-wire-button type="submit" blue>
+                    <i class="fa-solid fa-rotate-right mr-1"></i>
+                    Actualizar rol
+                </x-wire-button>
             </div>
         </form>
-    </x-wire-card>
 
+    </x-wire-card>
 
 </x-admin-layout>

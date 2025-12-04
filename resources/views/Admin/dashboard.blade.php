@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        {{-- Placeholder: Mascotas (sin funcionalidad añadida, solo visual) --}}
+        {{-- Placeholder: Mascotas --}}
         <div class="p-5 bg-white border border-emerald-100 rounded-xl shadow hover:shadow-md transition">
             <div class="flex items-center justify-between">
                 <div>
@@ -79,7 +79,6 @@
 
     </div>
 
-    <!-- SECCIÓN INFORMATIVA -->
     <div class="mt-10 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
         <h2 class="text-xl font-semibold text-emerald-700 flex items-center gap-2">
             <i class="fa-solid fa-circle-info"></i>
