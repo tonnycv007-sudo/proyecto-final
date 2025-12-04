@@ -49,18 +49,19 @@
 
         {{-- Placeholder: Mascotas --}}
         <div class="p-5 bg-white border border-emerald-100 rounded-xl shadow hover:shadow-md transition">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h2 class="text-lg font-semibold text-gray-700">Mascotas</h2>
-                    <p class="text-2xl font-bold text-emerald-600 mt-1">
-                        0
-                    </p>
-                </div>
-                <div class="text-emerald-600 text-4xl">
-                    <i class="fa-solid fa-dog"></i>
-                </div>
-            </div>
+    <div class="flex items-center justify-between">
+        <div>
+            <h2 class="text-lg font-semibold text-gray-700">Mascotas</h2>
+            <p class="text-2xl font-bold text-emerald-600 mt-1">
+                {{ \App\Models\Pet::count() }}
+            </p>
         </div>
+        <div class="text-emerald-600 text-4xl">
+            <i class="fa-solid fa-dog"></i>
+        </div>
+    </div>
+</div>
+
 
         {{-- Placeholder: Citas --}}
         <div class="p-5 bg-white border border-emerald-100 rounded-xl shadow hover:shadow-md transition">

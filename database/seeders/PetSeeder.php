@@ -2,16 +2,27 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Pet;
 use Illuminate\Database\Seeder;
 
 class PetSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        //
+        Pet::create([
+            'name' => 'Kira',
+            'species' => 'Perro',
+            'breed' => 'Pastor Alemán',
+            'age' => 4,
+            'owner' => 'Juan Pérez',
+        ]);
+
+        Pet::create([
+            'name' => 'Michi',
+            'species' => 'Gato',
+            'breed' => 'Criollo',
+            'age' => 2,
+            'owner' => 'Ana López',
+        ]);
     }
 }

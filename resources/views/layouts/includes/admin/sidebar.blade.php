@@ -1,5 +1,4 @@
 @php
-    // Puedes cambiar los iconos luego a iconos veterinarios si gustas
     $links = [
         [
             'name' => 'Dashboard',
@@ -21,6 +20,12 @@
             'icon' => 'fa-solid fa-user-doctor',
             'href' => route('admin.users.index'),
             'active' => request()->routeIs('admin.users.*'),
+        ],
+        [
+            'name'  => 'Mascotas',
+            'icon'  => 'fa-solid fa-dog',
+            'href'  => route('admin.pets.index'),
+            'active'=> request()->routeIs('admin.pets.*'),
         ],
     ];
 @endphp
@@ -51,7 +56,7 @@
                                     {{ $link['active'] 
                                         ? 'bg-emerald-100 text-emerald-800 border border-emerald-200 font-semibold' 
                                         : 'text-gray-700 hover:bg-emerald-50 hover:text-emerald-700' }}">
-                            
+
                             {{-- ICONO --}}
                             <span class="w-6 h-6 inline-flex justify-center items-center 
                                     {{ $link['active'] ? 'text-emerald-700' : 'text-emerald-500 group-hover:text-emerald-700' }}">

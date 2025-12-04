@@ -1,18 +1,20 @@
 <x-admin-layout 
-    title="Usuarios | Mi Veterinaria" 
+    title="Mascotas | Healthify"
     :breadcrumbs="[
-        ['name' => 'Inicio', 'href' => route('admin.dashboard')],
-        ['name' => 'Administración'],
-        ['name' => 'Usuarios'],
+        ['name' => 'Dashboard', 'href' => route('admin.dashboard')],
+        ['name' => 'Mascotas'],
     ]">
 
-    <x-slot name="actions">
-        <x-wire-button href="{{ route('admin.users.create') }}" blue>
-            <i class="fa-solid fa-plus mr-2"></i>
-            Agregar usuario
-        </x-wire-button>
-    </x-slot>
+    <x-wire-card>
+        <div class="flex justify-end mb-4">
+            <x-wire-button href="{{ route('admin.pets.create') }}" blue>
+                <i class="fa-solid fa-plus"></i> Nueva Mascota
+            </x-wire-button>
+        </div>
 
-    @livewire('admin.datatables.user-table')
+        {{-- Livewire Table --}}
+        @livewire('admin.datatables.pet-table')
+
+    </x-wire-card>
 
 </x-admin-layout>

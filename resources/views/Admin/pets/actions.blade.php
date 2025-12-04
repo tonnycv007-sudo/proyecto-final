@@ -1,19 +1,15 @@
-<div class="flex items-center gap-2">
+<div class="flex items-center space-x-2">
 
-    {{-- Editar usuario --}}
-    <x-wire-button href="{{ route('admin.users.edit', $user) }}" blue xs
-        title="Editar usuario">
-        <i class="fa-solid fa-user-pen"></i>
+    <x-wire-button href="{{ route('admin.pets.edit', $pet) }}" blue xs>
+        <i class="fa-solid fa-pen"></i>
     </x-wire-button>
 
-    {{-- Eliminar usuario --}}
-    <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="inline delete-form">
+    <form action="{{ route('admin.pets.destroy', $pet) }}" method="POST" class="delete-form inline">
         @csrf
         @method('DELETE')
 
-        <x-wire-button type="submit" red xs
-            title="Eliminar usuario">
-            <i class="fa-solid fa-user-xmark"></i>
+        <x-wire-button type="submit" red xs>
+            <i class="fa-solid fa-trash"></i>
         </x-wire-button>
     </form>
 
