@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -16,12 +17,13 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::all();
+        return view('admin.users.create', compact('roles'));
     }
 
     public function store(Request $request)
     {
-        // VALIDACIÓN COMPLETA
+        // VALIDACIÓN
         $validated = $request->validate([
             'name'       => 'required|string|max:255',
             'email'      => 'required|email|unique:users,email',
@@ -29,10 +31,11 @@ class UserController extends Controller
             'id_number'  => 'required|numeric',
             'phone'      => 'required|string|max:20',
             'address'    => 'required|string|max:255',
+            'role'       => 'required|exists:roles,id',
         ]);
 
-        // REGISTRAR USUARIO
-        User::create([
+        // CREAR USUARIO
+        $user = User::create([
             'name'       => $validated['name'],
             'email'      => $validated['email'],
             'password'   => Hash::make($validated['password']),
@@ -41,10 +44,14 @@ class UserController extends Controller
             'address'    => $validated['address'],
         ]);
 
+        // ASIGNAR ROL
+        $role = Role::find($validated['role']);
+        $user->assignRole($role);
+
         session()->flash('swal', [
             'icon'  => 'success',
             'title' => 'Usuario creado correctamente',
-            'text'  => 'El usuario ha sido registrado con éxito.',
+            'text'  => 'El usuario se registró con éxito.',
         ]);
 
         return redirect()->route('admin.users.index');
@@ -62,7 +69,9 @@ class UserController extends Controller
             return redirect()->route('admin.users.index');
         }
 
-        return view('admin.users.edit', compact('user'));
+        $roles = Role::all();
+
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     public function update(Request $request, User $user)
@@ -75,9 +84,10 @@ class UserController extends Controller
             'id_number'  => 'required|numeric',
             'phone'      => 'required|string|max:20',
             'address'    => 'required|string|max:255',
+            'role'       => 'required|exists:roles,id',
         ]);
 
-        // ACTUALIZACIÓN DE CAMPOS
+        // CAMPOS A ACTUALIZAR
         $data = [
             'name'       => $request->name,
             'email'      => $request->email,
@@ -92,10 +102,14 @@ class UserController extends Controller
 
         $user->update($data);
 
+        // ACTUALIZAR ROL
+        $role = Role::find($request->role);
+        $user->syncRoles([$role]);
+
         session()->flash('swal', [
             'icon'  => 'success',
             'title' => 'Usuario actualizado',
-            'text'  => 'La información del usuario ha sido actualizada.',
+            'text'  => 'La información del usuario se actualizó correctamente.',
         ]);
 
         return redirect()->route('admin.users.index');
@@ -118,7 +132,7 @@ class UserController extends Controller
         session()->flash('swal', [
             'icon'  => 'success',
             'title' => 'Usuario eliminado',
-            'text'  => 'El usuario ha sido eliminado correctamente.',
+            'text'  => 'El usuario fue eliminado correctamente.',
         ]);
 
         return redirect()->route('admin.users.index');
